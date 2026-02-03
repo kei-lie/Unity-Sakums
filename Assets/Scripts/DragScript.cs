@@ -36,6 +36,8 @@ public class DragScript : MonoBehaviour,
         mousePosition.y = Mathf.Clamp(mousePosition.y,
            0 + rectTransform.rect.height / 2,
            Screen.height - rectTransform.rect.height / 2);
+
+        rectTransform.position = mousePosition;
     }
 
     public void OnEndDrag(PointerEventData data)
