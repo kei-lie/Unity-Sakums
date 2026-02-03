@@ -11,7 +11,7 @@ public class SceneChangerScript : MonoBehaviour
 
     private IEnumerator LoadSceneAfterDelay(string sceneName)
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 
