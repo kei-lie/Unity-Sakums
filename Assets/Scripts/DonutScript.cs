@@ -1,11 +1,9 @@
-using System;
+
 using System.Collections;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class DonutScript : MonoBehaviour
 {
-
     public GameObject[] donutPrefabs;
     public float bakeInterval = 1.0f;
     float minPoz, maxPoz;
@@ -17,14 +15,16 @@ public class DonutScript : MonoBehaviour
         ovenTransform = GetComponent<Transform>();
     }
 
-    public void BakeDonut(Boolean state)
+    public void BakeDonut(bool state)
     {
         if (state)
+
             StartCoroutine(Bake());
+
         else
             StopAllCoroutines();
-    }
 
+    }
     IEnumerator Bake()
     {
         while (true)
@@ -37,6 +37,7 @@ public class DonutScript : MonoBehaviour
             int donutIndex = Random.Range(0, donutPrefabs.Length);
             Instantiate(donutPrefabs[donutIndex], spawnPoz, Quaternion.identity, ovenTransform);
             yield return new WaitForSeconds(bakeInterval);
+
         }
     }
 }
