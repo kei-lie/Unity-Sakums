@@ -1,35 +1,27 @@
+
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SwitchChannels : MonoBehaviour
 {
-    public GameObject Channel;
-    public GameObject Channel1;
-    public GameObject Channel2;
-    public Sprite[] chan;
-    public bool on;
+    public GameObject Background;
+    public AudioClip[] Sound;
+    public AudioSource sfxSource;
+    public Sprite[] characterSprite;
 
-
-    public void On(bool value)
+    public void TurnOn()
     {
-        on = value;
-        Channel1.GetComponent<Toggle>().interactable = value;
-        Channel2.GetComponent<Toggle>().interactable = value;
-    }
-    public void ChannelOne()
-    {
-        if (on == true)
+        if (Background.activeSelf == true)
+            Background.SetActive(false);
+        else
         {
-            Channel1.SetActive(true);
-            Channel2.SetActive(false);
+            Background.SetActive(true);
         }
     }
-    public void ChannelTwo()
+    public void ChangeBackground(int Kanals)
     {
-        if (on == true)
-        {
-            Channel1.SetActive(false);
-            Channel2.SetActive(true);
-        }
+        sfxSource.Pause();
+        Background.GetComponent<Image>().sprite = characterSprite[Kanals];
     }
+
 }
