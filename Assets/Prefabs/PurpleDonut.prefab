@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2846489573078503554}
   m_Layer: 5
   m_Name: PurpleDonut
-  m_TagString: Untagged
+  m_TagString: Donut
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 704, y: 85.22876}
-  m_SizeDelta: {x: 71.1488, y: 67.5425}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7229179653716726052
 CanvasRenderer:
@@ -125,7 +125,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 34
+  m_Radius: 25
 --- !u!50 &2846489573078503554
 Rigidbody2D:
   serializedVersion: 5
