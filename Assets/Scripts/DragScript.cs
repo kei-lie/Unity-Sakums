@@ -6,28 +6,29 @@ public class DragScript : MonoBehaviour,
 {
     private RectTransform rectTransform;
     private Canvas canvas;
-    SFXScript sfxScript;
+    SFX_Script sfxScript;
 
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        sfxScript = FindFirstObjectByType<SFXScript>();
+        sfxScript = FindFirstObjectByType<SFX_Script>();
         rectTransform = GetComponent<RectTransform>();
     }
 
     public void OnPointerDown(PointerEventData data)
     {
-        Debug.Log("Izdar?ts klik�?is uz velkam? objekta");
-        sfxScript.PlaySFX(0);
+        Debug.Log("Izdarīts klikšķis uz velkamā objekta");
+        sfxScript.PlaySFX(2);
     }
 
     public void OnBeginDrag(PointerEventData data)
     {
-        Debug.Log("S?kts vilk�anas process");
+        Debug.Log("Sākts vilkšanas process");
     }
 
     public void OnDrag(PointerEventData data)
     {
-        Debug.Log("Notiek vilk�ana");
+        Debug.Log("Notiek vilkšana");
         Vector2 mousePosition = data.position;
         mousePosition.x = Mathf.Clamp(mousePosition.x, 
             0 + rectTransform.rect.width / 2, 
@@ -42,6 +43,6 @@ public class DragScript : MonoBehaviour,
 
     public void OnEndDrag(PointerEventData data)
     {
-        Debug.Log("Beizies vilk�anas process");
+        Debug.Log("Beidzies vilkšanas process");
     }
 }

@@ -11,16 +11,17 @@ public class SceneChangerScript : MonoBehaviour
 
     private IEnumerator LoadSceneAfterDelay(string sceneName)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 
     public void QuitApplication()
     {
-    /*    if(UnityEditor.EditorApplication.isPlaying)
+       /* if(UnityEditor.EditorApplication.isPlaying)
         {
             UnityEditor.EditorApplication.isPlaying = false;
-        }else
-     */       Application.Quit();
+        
+        } else*/
+            Application.Quit();
     }
 }

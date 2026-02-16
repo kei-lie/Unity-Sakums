@@ -1,4 +1,3 @@
-﻿using Unity.VisualScripting;
 using UnityEngine;
 
 public class JiggleScript : MonoBehaviour
@@ -9,16 +8,14 @@ public class JiggleScript : MonoBehaviour
     [Header("Position Jiggler")]
     public bool jigglePosition = true;
     public Vector2 positionJigAmount;
-
     [Range(0f, 100f)]
-    public float positionFrequency = 10f;
+    public float postionFrequency = 10f;
     float positionTimer;
     Vector2 basePosition;
 
     [Header("Rotation Jiggler")]
     public bool jiggleRotation = true;
     public Vector3 rotationJigAmount;
-
     [Range(0f, 100f)]
     public float rotationFrequency = 10f;
     float rotationTimer;
@@ -27,11 +24,11 @@ public class JiggleScript : MonoBehaviour
     [Header("Scale Jiggler")]
     public bool jiggleScale = true;
     public Vector2 scaleJigAmount;
-
     [Range(0f, 100f)]
     public float scaleFrequency = 10f;
     float scaleTimer;
     Vector2 baseScale;
+
 
     void Start()
     {
@@ -44,11 +41,11 @@ public class JiggleScript : MonoBehaviour
     {
         if (jigglePosition)
         {
-            positionTimer += Time.deltaTime * positionFrequency;
+            positionTimer += Time.deltaTime * postionFrequency;
             Vector2 offset = new Vector2(
                 Mathf.Sin(positionTimer) * positionJigAmount.x,
                 Mathf.Cos(positionTimer) * positionJigAmount.y
-                );
+            );
             transform.localPosition = basePosition + offset * power;
         }
 
@@ -59,7 +56,7 @@ public class JiggleScript : MonoBehaviour
                 Mathf.Sin(rotationTimer) * rotationJigAmount.x,
                 Mathf.Cos(rotationTimer) * rotationJigAmount.y,
                 Mathf.Sin(rotationTimer) * rotationJigAmount.z
-                );
+            );
             transform.localRotation = baseRotation * Quaternion.Euler(offset * power);
         }
 
