@@ -34,8 +34,6 @@ public class ObjectCatchScript : MonoBehaviour
             transform.localScale += new Vector3(sizeIncrease, sizeIncrease, 0);
             rb.mass += massIncrease;
 
-            dm.donutCounter++;
-
 
 
         } else if (collision.CompareTag("Asteroid"))

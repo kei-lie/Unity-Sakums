@@ -29,13 +29,7 @@ public class DonutBakerScript : MonoBehaviour
 
     IEnumerator Bake() {          
         while (true) {
-            elapsedTime += Time.deltaTime;
-            int minutes = Mathf.FloorToInt(elapsedTime / 60);
-            int seconds = Mathf.FloorToInt(elapsedTime % 60);
-
-            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-
-
+            
             minPoz = ovenTransform.position.x - offset;
             maxPoz = ovenTransform.position.x + offset;
             float randPoz = Random.Range(minPoz, maxPoz);

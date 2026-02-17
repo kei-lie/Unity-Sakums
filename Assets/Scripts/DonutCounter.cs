@@ -1,14 +1,24 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class DonutCounter : MonoBehaviour
 {
-    public int donutCounter;
-    public Text donutText;
+    public int donutCount = 0;
+    public TextMeshProUGUI donutText;
 
-    void Update()
+    void Start()
     {
-        donutText.text = donutCounter.ToString();
+        UpdateDonutUI();
+    }
 
+    public void AddDonut(int amount)
+    {
+        donutCount += amount;
+        UpdateDonutUI();
+    }
+
+    void UpdateDonutUI()
+    {
+        donutText.text = "Donuts: " + donutCount.ToString();
     }
 }

@@ -1,17 +1,41 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
 
-    [SerializeField] TextMeshProUGUI timerText;
-    float elapsedTime;
-    // Update is called once per frame
+    public Toggle timer;
+    public TMP_Text timerText;
+
+    private float elapsedTime = 0f;
+    private bool isRunning = false;
+    void Start()
+    {
+        UpdateTimerDisplay(0f);
+
+        timer.onValueChanged.AddListener(OnToggleChanged);
+    }
+
     void Update()
     {
-        elapsedTime += Time.deltaTime;
-        int minutes = Mathf.FloorToInt(elapsedTime / 60);
-        int seconds = Mathf.FloorToInt(elapsedTime % 60);
+        if (isRunning)
+        {
+            elapsedTime += Time.deltaTime;
+            UpdateTimerDisplay(elapsedTime);
+        }
+
+    }
+
+    void OnToggleChanged(bool isOn)
+    {
+        isRunning = isOn;
+    }
+
+    void UpdateTimerDisplay(float time)
+    {
+        int minutes = Mathf.FloorToInt(time / 60);
+        int seconds = Mathf.FloorToInt(time % 60);
 
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
