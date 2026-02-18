@@ -1841,6 +1841,7 @@ GameObject:
   - component: {fileID: 1279369474}
   - component: {fileID: 1279369480}
   - component: {fileID: 1279369481}
+  - component: {fileID: 1279369482}
   m_Layer: 0
   m_Name: ScriptHolder
   m_TagString: Untagged
@@ -1905,6 +1906,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 819365113}
   audioClips: []
+--- !u!114 &1279369482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279369473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33569c0121e9b94dae26900bafea36c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1363971564
 GameObject:
   m_ObjectHideFlags: 0
@@ -2162,7 +2175,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1279369474}
+      - m_Target: {fileID: 1279369482}
         m_TargetAssemblyTypeName: SceneChangerScript, Assembly-CSharp
         m_MethodName: LoadWithDelay
         m_Mode: 5
