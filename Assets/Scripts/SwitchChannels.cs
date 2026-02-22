@@ -1,27 +1,74 @@
 
+using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class SwitchChannels : MonoBehaviour
 {
-    public GameObject Background;
-    public AudioClip[] Sound;
-    public AudioSource sfxSource;
-    public Sprite[] characterSprite;
+    public TMP_Text ChanelLog;
+    public GameObject tvBlackScreen;
+    public Slider VolumeSlider;
+    public GameObject[] chanels;
 
-    public void TurnOn()
+    private int currentChanelIndex = 0;
+    private bool tvIsOn = false;
+
+    public void ToggleTV()
     {
-        if (Background.activeSelf == true)
-            Background.SetActive(false);
+        tvIsOn = !tvIsOn;
+
+        tvBlackScreen.SetActive(!tvIsOn);
+
+        if (tvIsOn)
+        {
+            ShowChanel(currentChanelIndex);
+            VolumeSlider.onValueChanged.AddListener(ChangeVolume);
+        }
         else
         {
-            Background.SetActive(true);
+            HideAllChanels();
+            ChanelLog.text = "OFF";
         }
     }
-    public void ChangeBackground(int Kanals)
+
+    public void NextChanel()
     {
-        sfxSource.Pause();
-        Background.GetComponent<Image>().sprite = characterSprite[Kanals];
+        if (tvIsOn && currentChanelIndex < chanels.Length - 1)
+        {
+            currentChanelIndex++;
+            ShowChanel(currentChanelIndex);
+        }
+    }
+
+    public void PreviousChanel()
+    {
+        if (tvIsOn && currentChanelIndex > 0)
+        {
+            currentChanelIndex--;
+            ShowChanel(currentChanelIndex);
+        }
+    }
+
+    private void ShowChanel(int index)
+    {
+        HideAllChanels();
+        chanels[index].SetActive(true);
+        ChanelLog.text = "Channel: " + (index + 1).ToString();
+    }
+
+    private void HideAllChanels()
+    {
+        foreach (GameObject c in chanels)
+        {
+            c.SetActive(false);
+        }
+    }
+
+    public void ChangeVolume(float value)
+    {
+        AudioListener.volume = value;
     }
 
 }
