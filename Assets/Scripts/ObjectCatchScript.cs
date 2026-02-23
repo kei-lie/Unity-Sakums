@@ -11,10 +11,6 @@ public class ObjectCatchScript : MonoBehaviour
 
     
     public GameObject textField;
-    private int life = 3;
-    private DonutBakerScript BD;
-
-    private DonutCounter dm;
 
     void Start()
     {
@@ -33,23 +29,8 @@ public class ObjectCatchScript : MonoBehaviour
             Destroy(collision.gameObject);
             transform.localScale += new Vector3(sizeIncrease, sizeIncrease, 0);
             rb.mass += massIncrease;
-
-
-
-        } else if (collision.CompareTag("Asteroid"))
-        {
-            sfx.PlaySFX(4);
-            Destroy(collision.gameObject);
-            life = life-1;
-
-            if (life == 0)
-            {
-                BD.BakeDonut(false);
-                textField.GetComponent<TMP_Text>().text = "Game Over";
-            }
-
-        }
+        } 
         else
-            Debug.Log("Collided with non-donut and non-asteroid object: " + collision.gameObject.name);
+            Debug.Log("Collided with non-donut object: " + collision.gameObject.name);
     }
 }

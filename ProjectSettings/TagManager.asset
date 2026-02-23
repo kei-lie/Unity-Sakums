@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Donut
   - Asteroid
+  - Life
+  - Death
   layers:
   - Default
   - TransparentFX
