@@ -9,8 +9,9 @@ public class ObjectCatchScript : MonoBehaviour
     public float massIncrease = 1f;
 
     [Header("Score")]
-    public int donutScore = 10;
-    public int damageScoreLoss = 5;
+    private int donutScore = 10;
+    private int specialScore = 15;
+    private int damageScoreLoss = 5;
     private int currentScore = 0;
     public TMP_Text scoreText;
 
@@ -21,7 +22,6 @@ public class ObjectCatchScript : MonoBehaviour
 
     [Header("Game Over")]
     public GameObject gameOverUI;
-    private Animator gameOverAnimator;
 
     private Rigidbody2D rb;
     private SFX_Script sfx;
@@ -30,6 +30,8 @@ public class ObjectCatchScript : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1f; // <-- IMPORTANT FIX
+
         rb = GetComponent<Rigidbody2D>();
         sfx = FindFirstObjectByType<SFX_Script>();
 
@@ -37,8 +39,6 @@ public class ObjectCatchScript : MonoBehaviour
         currentScore = 0;
 
         gameOverUI.SetActive(false);
-
-        gameOverAnimator = gameOverUI.GetComponent<Animator>();
 
         UpdateUI();
     }
@@ -54,6 +54,8 @@ public class ObjectCatchScript : MonoBehaviour
         {
             sfx.PlaySFX(4);
 
+
+
             currentScore += donutScore;
             UpdateUI();
 
@@ -62,7 +64,19 @@ public class ObjectCatchScript : MonoBehaviour
             transform.localScale += new Vector3(sizeIncrease, sizeIncrease, 0);
             rb.mass += massIncrease;
         }
-        else if (collision.CompareTag("Asteroid") || collision.CompareTag("Weight"))
+        else if (collision.CompareTag("Green"))
+        {
+            sfx.PlaySFX(4);
+
+            currentScore += specialScore;
+            UpdateUI();
+
+            Destroy(collision.gameObject);
+
+            transform.localScale += new Vector3(sizeIncrease, sizeIncrease, 0);
+            rb.mass += massIncrease;
+        }
+        else if (collision.CompareTag("Asteroid"))
         {
             TakeDamage(1);
 
@@ -89,6 +103,9 @@ public class ObjectCatchScript : MonoBehaviour
 
     void UpdateUI()
     {
+
+        scoreText.text = "TEST " + Time.frameCount;
+
         if (livesText != null)
             livesText.text = "Lives: " + currentLives;
 
@@ -104,12 +121,6 @@ public class ObjectCatchScript : MonoBehaviour
 
         gameOverUI.SetActive(true);
 
-        // Palaid animāciju vienreiz
-        if (gameOverAnimator != null)
-        {
-            gameOverAnimator.Play("GameOverFadeIn", 0, 0f);
-        }
-
         Time.timeScale = 0f;
     }
 
@@ -117,6 +128,6 @@ public class ObjectCatchScript : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

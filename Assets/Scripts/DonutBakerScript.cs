@@ -8,7 +8,7 @@ public class DonutBakerScript : MonoBehaviour
     public float bakeInterval = 1.0f;
     float minPoz, maxPoz;
     Transform ovenTransform;
-    public float offset = 0.7f;
+    public float offset = 1f;
     [SerializeField] TextMeshProUGUI timerText;
     float elapsedTime;
 

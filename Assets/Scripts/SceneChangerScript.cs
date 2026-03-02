@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,17 +11,14 @@ public class SceneChangerScript : MonoBehaviour
 
     private IEnumerator LoadSceneAfterDelay(string sceneName)
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSecondsRealtime(1.5f); // ✅ works even if timeScale = 0
+
+        Time.timeScale = 1f; // ✅ always reset time before loading
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 
     public void QuitApplication()
     {
-       /* if(UnityEditor.EditorApplication.isPlaying)
-        {
-            UnityEditor.EditorApplication.isPlaying = false;
-        
-        } else*/
-            Application.Quit();
+        Application.Quit();
     }
 }

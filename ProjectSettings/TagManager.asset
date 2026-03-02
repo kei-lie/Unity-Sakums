@@ -8,6 +8,7 @@ TagManager:
   - Asteroid
   - Life
   - Death
+  - Green
   layers:
   - Default
   - TransparentFX
